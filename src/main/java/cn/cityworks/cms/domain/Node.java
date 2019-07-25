@@ -1,4 +1,4 @@
-package cn.cityworks.cms.model;
+package cn.cityworks.cms.domain;
 
 import java.util.List;
 

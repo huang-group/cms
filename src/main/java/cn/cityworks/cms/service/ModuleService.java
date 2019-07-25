@@ -1,6 +1,6 @@
 package cn.cityworks.cms.service;
 
-import cn.cityworks.cms.model.Node;
+import cn.cityworks.cms.domain.Node;
 
 import java.util.List;
 import java.util.Map;

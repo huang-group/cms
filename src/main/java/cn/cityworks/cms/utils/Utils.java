@@ -1,6 +1,6 @@
 package cn.cityworks.cms.utils;
 
-import cn.cityworks.cms.model.Node;
+import cn.cityworks.cms.domain.Node;
 
 import java.util.LinkedList;
 import java.util.List;
