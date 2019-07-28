@@ -2,7 +2,6 @@ package cn.cityworks.cms.exception;
 
 import cn.cityworks.cms.base.Definition;
 
-import java.util.Map;
 
 /**
  * 自定义业务异常类

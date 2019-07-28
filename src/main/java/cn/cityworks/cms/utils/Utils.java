@@ -29,7 +29,7 @@ public class Utils {
         String id, fatherId;        //作为节点判断
 
         for(Map<String, Object> map : list){
-            id = (String)map.get("id");
+            id = (String) map.get("id");
             fatherId = (String)map.get("father_id");
 
             if(fatherId.equals(fid)){
