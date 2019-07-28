@@ -24,8 +24,8 @@ public interface DissertationDao {
     /**
      * 获取所有未删除专题信息
      */
-    @Select("select * from sys_dissertation where status = 0 order by channel_id, sort")
-    List<Map<String, Object>> getAllDissertation();
+    @Select("select * from sys_dissertation where status = 0 group by id,channel_id order by channel_id, sort")
+    List<SysDissertation> getAllDissertation();
 
     /**
      * 更新专题信息-变更channel_id

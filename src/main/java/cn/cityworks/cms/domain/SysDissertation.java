@@ -1,11 +1,14 @@
 package cn.cityworks.cms.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.sql.Timestamp;
 
 /**
  * 数据库实体类
  * 表:sys_dissertation
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SysDissertation {
     private String id;      //id
     private String name;        //专题名称

@@ -2,7 +2,6 @@ package cn.cityworks.cms.service.impl;
 
 import cn.cityworks.cms.base.Definition;
 import cn.cityworks.cms.dao.DissertationDao;
-import cn.cityworks.cms.domain.Node;
 import cn.cityworks.cms.domain.SysDissertation;
 import cn.cityworks.cms.exception.BizException;
 import cn.cityworks.cms.service.DissertationService;
@@ -33,12 +32,15 @@ public class DissertationServiceImpl implements DissertationService {
     public boolean handleAddDissertation(Map<String, Object> params) {
         //获取参数
         String name = null == params.get("name") ? null : (String) params.get("name");      //专题名称
-        String Channel_id = null == params.get("Channel_id") ? null : (String) params.get("Channel_id");       //频道id
+        String channel_id = null == params.get("channel_id") ? null : (String) params.get("channel_id");       //频道id
         int sort = null == params.get("sort") ? 0 : (int) params.get("sort");     //排序
         String roles = null == params.get("roles") ? null : (String) params.get("roles");        //权限
 
         if (null == name || "".equals(name)) {
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "专题名称不能为空!");
+        }
+        if (null == channel_id || "".equals(channel_id)) {
+            throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "频道id不能为空!");
         }
 
         //插入数据
@@ -46,7 +48,7 @@ public class DissertationServiceImpl implements DissertationService {
         SysDissertation sysDissertation = new SysDissertation();
         sysDissertation.setId(Utils.randomUUID());
         sysDissertation.setName(name);
-        sysDissertation.setChannel_id(Channel_id);
+        sysDissertation.setChannel_id(channel_id);
         sysDissertation.setSort(sort);
         sysDissertation.setStatus(Definition.DATA_STATUS_NORMAL);
         sysDissertation.setRecord_status(Definition.DATA_STATUS_NORMAL);
@@ -80,14 +82,14 @@ public class DissertationServiceImpl implements DissertationService {
      * 获取专题
      */
     @Override
-    public List<Node> handleGetDissertation() {
-        List<Map<String, Object>> dissertation = dissertationDao.getAllDissertation();
+    public List<SysDissertation> handleGetDissertation() {
+        List<SysDissertation> dissertation = dissertationDao.getAllDissertation();
 
         if (null == dissertation) {
             return new ArrayList<>();
         }
 
-        return Utils.getTree(dissertation, "0");
+        return dissertation;
     }
 
     /**
