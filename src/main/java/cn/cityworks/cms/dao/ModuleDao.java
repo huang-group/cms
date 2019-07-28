@@ -2,7 +2,6 @@ package cn.cityworks.cms.dao;
 
 import cn.cityworks.cms.domain.SysModule;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
 import java.util.Map;
