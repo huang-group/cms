@@ -19,7 +19,7 @@ public interface DissertationDao {
      * 删除专题
      */
     @Delete("update sys_dissertation set status = #{status} where id = #{id}")
-    Integer deleteDissertation(String id, int status);
+    Integer deleteDissertation(@Param("id") String id, @Param("status") int status);
 
     /**
      * 获取所有未删除专题信息
@@ -32,12 +32,12 @@ public interface DissertationDao {
      */
     @Update("update sys_dissertation set name = #{dissertation.name}, sort = #{dissertation.sort}, roles = #{dissertation.roles},  " +
             "channel_id = #{dissertation.channel_id}, update_date = #{dissertation.update_date} where id = #{dissertation.id} and status = 0")
-    Integer updateChannel(SysDissertation dissertation);
+    Integer updateDissertation(@Param("dissertation") SysDissertation dissertation);
 
     /**
      * 更新专题信息-不变更channel_id
      */
     @Update("update sys_dissertation set name = #{dissertation.name}, sort = #{dissertation.sort}, roles = #{dissertation.roles}, " +
             "update_date = #{dissertation.update_date} where id = #{dissertation.id} and status = 0")
-    Integer updateChannelWithFatherId(SysDissertation dissertation);
+    Integer updateDissertationWithChannelId(@Param("dissertation") SysDissertation dissertation);
 }

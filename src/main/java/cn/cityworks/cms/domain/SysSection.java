@@ -1,11 +1,14 @@
 package cn.cityworks.cms.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.sql.Timestamp;
 
 /**
  * 数据库实体类
  * 表:sys_section
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SysSection {
 
     private String id;      //id

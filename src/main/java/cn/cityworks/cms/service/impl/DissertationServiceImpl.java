@@ -25,6 +25,7 @@ public class DissertationServiceImpl implements DissertationService {
         this.dissertationDao = dissertationDao;
     }
 
+
     /**
      * 添加专题
      */
@@ -45,18 +46,18 @@ public class DissertationServiceImpl implements DissertationService {
 
         //插入数据
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        SysDissertation sysDissertation = new SysDissertation();
-        sysDissertation.setId(Utils.randomUUID());
-        sysDissertation.setName(name);
-        sysDissertation.setChannel_id(channel_id);
-        sysDissertation.setSort(sort);
-        sysDissertation.setStatus(Definition.DATA_STATUS_NORMAL);
-        sysDissertation.setRecord_status(Definition.DATA_STATUS_NORMAL);
-        sysDissertation.setCreate_date(time);
-        sysDissertation.setUpdate_date(time);
-        sysDissertation.setRoles(roles);
+        SysDissertation dissertation = new SysDissertation();
+        dissertation.setId(Utils.randomUUID());
+        dissertation.setName(name);
+        dissertation.setChannel_id(channel_id);
+        dissertation.setSort(sort);
+        dissertation.setStatus(Definition.DATA_STATUS_NORMAL);
+        dissertation.setRecord_status(Definition.DATA_STATUS_NORMAL);
+        dissertation.setCreate_date(time);
+        dissertation.setUpdate_date(time);
+        dissertation.setRoles(roles);
 
-        return 1 == dissertationDao.insertDissertation(sysDissertation);
+        return 1 == dissertationDao.insertDissertation(dissertation);
     }
 
     /**
@@ -121,9 +122,9 @@ public class DissertationServiceImpl implements DissertationService {
 
         int result;
         if (null == channel_id) {
-            result = dissertationDao.updateChannel(dissertation);
+            result = dissertationDao.updateDissertation(dissertation);
         } else {
-            result = dissertationDao.updateChannelWithFatherId(dissertation);
+            result = dissertationDao.updateDissertationWithChannelId(dissertation);
         }
 
         return 1 == result;
