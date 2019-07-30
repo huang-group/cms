@@ -6,6 +6,9 @@ import cn.cityworks.cms.domain.Node;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 频道操作-逻辑层-接口
+ */
 public interface ChannelService {
     /**
      * 添加频道

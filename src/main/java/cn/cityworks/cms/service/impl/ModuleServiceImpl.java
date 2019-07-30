@@ -35,12 +35,12 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public boolean handleAddModule(Map<String, Object> params){
         //获取参数
-        String name = null == params.get("name") ? null : (String)params.get("name");       //模块名称
+        String name = (String)params.get("name");       //模块名称
         String fatherId = null == params.get("father_id") ? "0" : (String)params.get("father_id");      //父模块id
-        String roles = null == params.get("roles") ? null : (String)params.get("roles");     //权限
+        String roles = (String)params.get("roles");     //权限
         int sort = null == params.get("sort") ? 0 : (int)params.get("sort");      //排序
 
-        if(null == name || "".equals(name)){
+        if(Utils.isEmpty(name)){
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "模块名称不能为空!");
         }
 
@@ -59,8 +59,7 @@ public class ModuleServiceImpl implements ModuleService {
 
         int result = moduleDao.insertModule(sysModule);
 
-        boolean isInsert = 1 == result ? true : false;
-        return isInsert;
+        return 1 == result;
     }
 
     /**
@@ -68,21 +67,20 @@ public class ModuleServiceImpl implements ModuleService {
      */
     @Override
     public boolean handleDeleteModule(Map<String, Object> params){
-        String id = null == params.get("id") ? null : (String)params.get("id");
+        String id = (String)params.get("id");
         int status = null == params.get("status") ? 0 : (int)params.get("status");
 
         //判断参数是否是删除，不是则抛出异常
         if(status != Definition.DATA_STATUS_LOGIC_DELETE && status != Definition.DATA_STATUS_PHYSICS_DELETE){
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "请按照文档传入指定删除参数");
         }
-        if(null == id || "".equals(id)){
+        if(Utils.isEmpty(id)){
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "请传入要删除的模块id");
         }
 
         int result = moduleDao.deleteModule(id, status);
 
-        boolean isInsert = 1 == result ? true : false;
-        return isInsert;
+        return 1 == result;
     }
 
     /**
@@ -92,14 +90,12 @@ public class ModuleServiceImpl implements ModuleService {
     public List<Node> handleGetModule(){
         List<Map<String, Object>> modules = moduleDao.getAllModule();
 
-        if(null == modules){
+        if(Utils.isNull(modules)){
             return new ArrayList<>();
         }
 
         //处理树
-        List<Node> result = Utils.getTree(modules, "0");
-
-        return result;
+        return Utils.getTree(modules, "0");
     }
 
     /**
@@ -108,16 +104,16 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public boolean handleUpdateModule(Map<String, Object> params){
         //获取参数
-        String id = null == params.get("id") ? null : (String)params.get("id");
-        String name = null == params.get("name") ? null : (String)params.get("name");       //模块名称
-        String fatherId = null == params.get("father_id") ? null : (String)params.get("father_id");      //父模块id
+        String id = (String)params.get("id");
+        String name = (String)params.get("name");       //模块名称
+        String fatherId = (String)params.get("father_id");      //父模块id
         int sort = null == params.get("sort") ? 0 : (int)params.get("sort");      //排序
-        String roles = null == params.get("roles") ? null : (String)params.get("roles");     //权限
+        String roles = (String)params.get("roles");     //权限
 
-        if(null == id || "".equals(id)){
+        if(Utils.isEmpty(id)){
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "请传入要更新的模块id");
         }
-        if(null == name || "".equals(name)){
+        if(Utils.isEmpty(name)){
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "模块名称不能为空!");
         }
 
@@ -130,14 +126,13 @@ public class ModuleServiceImpl implements ModuleService {
         module.setUpdate_date(new Timestamp(System.currentTimeMillis()));
 
         int result;
-        if(null == fatherId){
+        if(Utils.isNull(fatherId)){
             result = moduleDao.updateModule(module);
         }else{
             result = moduleDao.updateModuleWithFatherId(module);
         }
 
-        boolean isUpdate = 1 == result ? true : false;
-        return isUpdate;
+        return 1 == result;
     }
 
 }

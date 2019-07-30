@@ -2,6 +2,7 @@ package cn.cityworks.cms.utils;
 
 import cn.cityworks.cms.domain.Node;
 
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -44,5 +45,41 @@ public class Utils {
         }
 
         return result;
+    }
+
+    /**
+     * 判断字符串是否为空
+     */
+    public static boolean isEmpty(String str){
+        return null == str || "".equals(str);
+    }
+
+    /**
+     * 判断对象是否为空
+     */
+    public static boolean isNull(Object obj){
+        return null == obj;
+    }
+
+    /**
+     * 将字符转为java.sql.Date
+     */
+    public static java.sql.Date strToSqlDate(String str){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = null;
+
+        if(Utils.isEmpty(str)){
+            return null;
+        }
+
+        try{
+            date = format.parse(str);
+
+            return new java.sql.Date(date.getTime());
+        }catch (Exception e){
+            e.printStackTrace();
+
+            return null;
+        }
     }
 }

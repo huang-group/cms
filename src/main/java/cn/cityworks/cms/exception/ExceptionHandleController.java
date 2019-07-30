@@ -81,7 +81,7 @@ public class ExceptionHandleController {
             sysException.setUpdate_date(time);
             sysException.setProperties(null);
 
-            log.error(exceptionText);
+//            log.error(exceptionText);
 
             exceptionHandleDao.addException(sysException);
         }catch (Exception e){

@@ -24,4 +24,11 @@ public class Definition {
     public static final int EXCEPTION_OF_RUNTIME = 1;
     /** 异常编码-业务异常异常 */
     public static final int EXCEPTION_OF_BIZ = 2;
+
+    /** 内容审核状态码-未审核 */
+    public static final int CONTENT_AUDIT_NONE = 0;
+    /** 内容审核状态码-审核成功 */
+    public static final int CONTENT_AUDIT_SUCCESS = 1;
+    /** 内容审核状态码-退回 */
+    public static final int CONTENT_AUDIT_BACK = 2;
 }

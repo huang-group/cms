@@ -35,12 +35,12 @@ public class ChannelServiceImpl implements ChannelService {
     @Override
     public boolean handleAddChannel(Map<String, Object> params) {
         //获取参数
-        String name = null == params.get("name") ? null : (String) params.get("name");       //频道名称
+        String name = (String) params.get("name");       //频道名称
         String fatherId = null == params.get("father_id") ? "0" : (String) params.get("father_id");      //父频道id
         int sort = null == params.get("sort") ? 0 : (int) params.get("sort");      //排序
-        String roles = null == params.get("roles") ? null : (String) params.get("roles");     //权限
+        String roles = (String) params.get("roles");     //权限
 
-        if (null == name || "".equals(name)) {
+        if (Utils.isEmpty(name)) {
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "频道名称不能为空!");
         }
 
@@ -65,14 +65,14 @@ public class ChannelServiceImpl implements ChannelService {
      */
     @Override
     public boolean handleDeleteChannel(Map<String, Object> params) {
-        String id = null == params.get("id") ? null : (String) params.get("id");
+        String id = (String) params.get("id");
         int status = null == params.get("status") ? 0 : (int) params.get("status");
 
         //判断参数是否是删除，不是则抛出异常
         if (status != Definition.DATA_STATUS_LOGIC_DELETE && status != Definition.DATA_STATUS_PHYSICS_DELETE) {
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "请按照文档传入指定删除参数");
         }
-        if (null == id || "".equals(id)) {
+        if (Utils.isEmpty(id)) {
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "请传入要删除的频道id");
         }
 
@@ -86,7 +86,7 @@ public class ChannelServiceImpl implements ChannelService {
     public List<Node> handleGetChannel() {
         List<Map<String, Object>> channel = channelDao.getAllChannel();
 
-        if (null == channel) {
+        if (Utils.isNull(channel)) {
             return new ArrayList<>();
         }
 
@@ -99,16 +99,16 @@ public class ChannelServiceImpl implements ChannelService {
     @Override
     public boolean handleUpdateChannel(Map<String, Object> params) {
         //获取参数
-        String id = null == params.get("id") ? null : (String) params.get("id");
-        String name = null == params.get("name") ? null : (String) params.get("name");       //频道名称
-        String fatherId = null == params.get("father_id") ? null : (String) params.get("father_id");      //父模块id
+        String id = (String) params.get("id");
+        String name = (String) params.get("name");       //频道名称
+        String fatherId = (String) params.get("father_id");      //父模块id
         int sort = null == params.get("sort") ? 0 : (int) params.get("sort");      //排序
-        String roles = null == params.get("roles") ? null : (String) params.get("roles");     //权限
+        String roles = (String) params.get("roles");     //权限
 
-        if (null == id || "".equals(id)) {
+        if (Utils.isEmpty(id)) {
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "请传入要更新的频道id");
         }
-        if (null == name || "".equals(name)) {
+        if (Utils.isEmpty(name)) {
             throw new BizException(Definition.RESPONSE_STATUS_FAIL, "传入参数异常", "频道名称不能为空!");
         }
 
@@ -121,7 +121,7 @@ public class ChannelServiceImpl implements ChannelService {
         channel.setUpdate_date(new Timestamp(System.currentTimeMillis()));
 
         int result;
-        if (null == fatherId) {
+        if (Utils.isNull(fatherId)) {
             result = channelDao.updateChannel(channel);
         } else {
             result = channelDao.updateChannelWithFatherId(channel);

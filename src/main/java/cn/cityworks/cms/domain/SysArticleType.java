@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public class SysArticleType {
 
     private String id;      //id
-    private String name;        //文章类型名称
+    private String name;        //内容类型名称
     private int sort;       //排序
     private int status;     //状态：0正常；-1逻辑删；-2物理删除
     private int record_status;      //预留状态

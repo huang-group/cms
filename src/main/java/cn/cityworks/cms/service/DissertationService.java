@@ -5,6 +5,9 @@ import cn.cityworks.cms.domain.Node;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 专题操作-逻辑层-接口
+ */
 public interface DissertationService {
     /**
      * 添加专题
@@ -19,7 +22,7 @@ public interface DissertationService {
     /**
      * 获取专题
      */
-    List<Node> handleGetDissertation();
+    List<Map<String, Object>> handleGetDissertation();
 
     /**
      * 更新专题

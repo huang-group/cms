@@ -9,13 +9,14 @@ import java.sql.Timestamp;
 public class SysDissertation {
     private String id;      //id
     private String name;        //专题名称
-    private String channel_id;       //所属频道
+    private String section_id;       //所属专栏，必须是专题专栏
     private int sort;         //排序
     private int status;     //状态：0正常；-1逻辑删；-2物理删除
     private int record_status;      //预留状态
     private Timestamp create_date;      //创建时间
     private Timestamp update_date;      //更新时间
     private String roles;       //权限
+    private String image;       //专题图片
 
     public String getId() {
         return id;
@@ -33,12 +34,12 @@ public class SysDissertation {
         this.name = name;
     }
 
-    public String getChannel_id() {
-        return channel_id;
+    public String getSection_id() {
+        return section_id;
     }
 
-    public void setChannel_id(String channel_id) {
-        this.channel_id = channel_id;
+    public void setSection_id(String section_id) {
+        this.section_id = section_id;
     }
 
     public int getSort() {
@@ -87,5 +88,13 @@ public class SysDissertation {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
