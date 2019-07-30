@@ -31,13 +31,13 @@ public interface SectionDao {
      */
     @Update("update sys_section set name = #{section.name}, sort = #{section.sort}, roles = #{section.roles},  " +
             "channel_id = #{section.channel_id}, update_date = #{section.update_date} where id = #{section.id} and status = 0")
-    Integer updateSection(@Param("section") SysSection section);
+    Integer updateSectionWithChannelId(@Param("section") SysSection section);
 
     /**
      * 更新专栏信息-不变更channel_id
      */
     @Update("update sys_section set name = #{section.name}, sort = #{section.sort}, roles = #{section.roles},  " +
-            "update_date = #{dissertation.section} where id = #{section.id} and status = 0")
-    Integer updateSectionWithChannelId(@Param("section") SysSection section);
+            "update_date = #{section.update_date} where id = #{section.id} and status = 0")
+    Integer updateSection(@Param("section") SysSection section);
 }
 

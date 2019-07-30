@@ -18,7 +18,7 @@ public interface ChannelDao {
     /**
      * 删除频道
      */
-    @Delete("update sys_channel set status = #{status} where id = #{id}")
+    @Update("update sys_channel set status = #{status} where id = #{id}")
     Integer deleteChannel(@Param("id") String id, @Param("status") int status);
 
     /**

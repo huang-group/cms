@@ -100,7 +100,7 @@ public class SectionServiceImpl implements SectionService {
         String id = null == params.get("id") ? null : (String) params.get("id");
         String channel_id = null == params.get("channel_id") ? null : (String) params.get("channel_id");
         String name = null == params.get("name") ? null : (String) params.get("name");
-        int sort = null == params.get("sort") ? 0 : (int) params.get("name");
+        int sort = null == params.get("sort") ? 0 : (int) params.get("sort");
         String roles = null == params.get("roles") ? null : (String) params.get("roles");
 
         if (null == id || "".equals(id)) {
