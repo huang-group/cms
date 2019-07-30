@@ -1,6 +1,6 @@
 package cn.cityworks.cms.service;
 
-import cn.cityworks.cms.domain.Node;
+import cn.cityworks.cms.domain.SysDissertation;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +22,11 @@ public interface DissertationService {
     /**
      * 获取专题
      */
+<<<<<<< HEAD
     List<Map<String, Object>> handleGetDissertation();
+=======
+    List<SysDissertation> handleGetDissertation();
+>>>>>>> 4584c6186f9064a85245150722eb3a17a72f000c
 
     /**
      * 更新专题

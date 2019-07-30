@@ -36,11 +36,26 @@ public interface DissertationDao {
     /**
      * 获取所有未删除专题信息
      */
+<<<<<<< HEAD
     @Select("select * from sys_dissertation where status = 0 order by sort")
     List<Map<String, Object>> getAllDissertation();
 
     /**
      * 更新专题信息
+=======
+    @Select("select * from sys_dissertation where status = 0 group by id,channel_id order by channel_id, sort")
+    List<SysDissertation> getAllDissertation();
+
+    /**
+     * 更新专题信息-变更channel_id
+     */
+    @Update("update sys_dissertation set name = #{dissertation.name}, sort = #{dissertation.sort}, roles = #{dissertation.roles},  " +
+            "channel_id = #{dissertation.channel_id}, update_date = #{dissertation.update_date} where id = #{dissertation.id} and status = 0")
+    Integer updateDissertationWithChannelId(@Param("dissertation") SysDissertation dissertation);
+
+    /**
+     * 更新专题信息-不变更channel_id
+>>>>>>> 4584c6186f9064a85245150722eb3a17a72f000c
      */
     @Update("update sys_dissertation set name = #{dissertation.name}, sort = #{dissertation.sort}, " +
             "roles = #{dissertation.roles}, image = #{dissertation.image}, " +
