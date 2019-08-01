@@ -3,10 +3,7 @@ package cn.cityworks.cms.utils;
 import cn.cityworks.cms.domain.Node;
 
 import java.text.SimpleDateFormat;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 基础处理类
@@ -80,6 +77,21 @@ public class Utils {
             e.printStackTrace();
 
             return null;
+        }
+    }
+
+    /**
+     * 分页
+     */
+    public static List<Map<String, Object>> pagingForApp(List<Map<String, Object>> list, int page, int rows){
+        int size = list.size();
+        int pageStart = page * rows;       //截取开始位置
+        int pageEnd = size < (page + 1) * rows ? size : (page + 1) * rows;
+
+        if(pageStart > size) {
+            return new ArrayList<Map<String, Object>>();
+        }else {
+            return list.subList(pageStart, pageEnd);
         }
     }
 }

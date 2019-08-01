@@ -1,5 +1,8 @@
 package cn.cityworks.cms.service;
 
+import cn.cityworks.cms.domain.SysContent;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +21,10 @@ public interface ContentService {
 
     /** 审核内容 */
     boolean handleAuditContent(Map<String, Object> params);
+
+    /** 获取内容列表 */
+    List<Map<String, Object>> handleGetContentList(Map<String, Object> params);
+
+    /** 根据id获取内容信息 */
+    SysContent handleGetContentById(Map<String, Object> params);
 }
