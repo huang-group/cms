@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -26,6 +27,9 @@ public class DissertationController {
     public void setDissertationService(DissertationService dissertationService) {
         this.dissertationService = dissertationService;
     }
+
+    @Autowired
+    private HttpServletRequest request;
 
     @PostMapping(value = "/add", produces = "application/json;charset=UTF-8")
     @ApiOperation(value = "添加专题", notes = "专题添加接口")
